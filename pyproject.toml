@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "geometrix"
+version = "0.1.0"
+description = "LaTeX-first differential geometry renderer for Jupyter/Colab."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Geometrix Contributors" }]
+license = { text = "MIT" }
+keywords = ["geometry", "jupyter", "three.js", "webgpu"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy>=1.24",
+  "sympy>=1.12",
+  "ipywidgets>=8.1",
+  "traitlets>=5.9",
+  "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+latex-sympy = ["antlr4-python3-runtime==4.11.*"]
+latex2sympy = ["latex2sympy2>=1.9"]
+fast = ["numba>=0.59", "numexpr>=2.8"]
+implicit = ["scikit-image>=0.22"]
+tensors = ["einsteinpy>=0.4"]
+
+[tool.hatch.build]
+packages = ["src/geometrix"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/geometrix/static/**"]
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

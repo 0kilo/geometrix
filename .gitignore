@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+js/node_modules/
+js/dist/
+
+# Build artifacts
+dist/
+
+# OS
+.DS_Store
+
+# Coding agent
+AGENTS.md
+spec.md
+notes.md 
+task_plan.md 
+log.md
+info.txt
