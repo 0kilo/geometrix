@@ -16,6 +16,14 @@ STATIC_DIR = ROOT / "src" / "geometrix" / "static"
 def run_build() -> None:
     subprocess.run(["npm", "--prefix", str(JS_DIR), "install"], check=True)
     subprocess.run(["npm", "--prefix", str(JS_DIR), "run", "build"], check=True)
+    _ensure_index_js()
+
+
+def _ensure_index_js() -> None:
+    iife_path = DIST_DIR / "index.iife.js"
+    index_path = DIST_DIR / "index.js"
+    if iife_path.exists():
+        shutil.copy2(iife_path, index_path)
 
 
 def copy_assets() -> None:

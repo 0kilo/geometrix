@@ -68,8 +68,8 @@ class GeomWidget(DOMWidget):
         _view_name = Unicode("GeomWidgetView").tag(sync=True)
         _model_module = Unicode("geometrix-widget").tag(sync=True)
         _view_module = Unicode("geometrix-widget").tag(sync=True)
-        _model_module_version = Unicode("0.1.0").tag(sync=True)
-        _view_module_version = Unicode("0.1.0").tag(sync=True)
+        _model_module_version = Unicode("0.1.1").tag(sync=True)
+        _view_module_version = Unicode("0.1.1").tag(sync=True)
         scene_spec = Dict({}).tag(sync=True)
         buffers = Dict({}).tag(sync=True)
         height = Unicode("420").tag(sync=True)
@@ -144,6 +144,7 @@ def _ensure_js_loaded() -> None:
     except Exception:
         return
     candidates = [
+        static_dir / "index.iife.js",
         static_dir / "index.js",
     ]
     js_path = next((path for path in candidates if path.is_file()), None)
