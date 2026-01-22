@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "geometrix"
-version = "0.1.2"
+version = "0.1.10"
 description = "LaTeX-first differential geometry renderer for Jupyter/Colab."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -35,7 +35,10 @@ tensors = ["einsteinpy>=0.4"]
 packages = ["src/geometrix"]
 
 [tool.hatch.build.targets.wheel]
-include = ["src/geometrix/static/**"]
+include = [
+  "src/geometrix/transport/templates/**",
+  "src/geometrix/transport/*.css",
+]
 
 [tool.black]
 line-length = 88

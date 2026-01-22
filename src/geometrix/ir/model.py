@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
+from geometrix.ir.tensors import TensorMetadata
+
 
 class DefinitionKind(str, Enum):
     SCALAR = "scalar"
@@ -34,3 +36,7 @@ class SymbolicIR:
     params: dict[str, float] = field(default_factory=dict)
     definitions: dict[str, Definition] = field(default_factory=dict)
     render_requests: list[RenderRequest] = field(default_factory=list)
+    time_param: str = "t"
+    time_value: float = 0.0
+    tensor_metadata: dict[str, TensorMetadata] = field(default_factory=dict)
+    index_sets: dict[str, int] = field(default_factory=dict)

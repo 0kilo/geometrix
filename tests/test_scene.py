@@ -1,8 +1,8 @@
 import numpy as np
 
+from geometrix.animation import Animation, Frame, attach_animation
 from geometrix.scene.build import build_buffers, build_surface_scene
-from geometrix.transport.buffers import build_payload
-from geometrix.transport.widget import _scene_to_dict, build_viewer, build_widget
+from geometrix.transport.html import _scene_to_dict, render_html
 
 
 def test_build_buffers_creates_specs():
@@ -20,21 +20,20 @@ def test_scene_spec_surface():
     assert scene.buffers["positions"].shape == (6, 3)
 
 
-def test_transport_payload_and_viewer():
+def test_transport_payload_and_render():
     arrays = {"positions": np.zeros((2, 3), dtype=np.float32)}
-    payload = build_payload(arrays)
-    assert "positions" in payload.buffers
-
     scene = build_surface_scene(arrays["positions"], (2, 1))
-    viewer = build_viewer(scene, arrays)
-    assert viewer.scene.version == "1.0"
+    bundle = render_html(scene, arrays, height=360)
+    assert "geometrix-container" in bundle.html
     scene_dict = _scene_to_dict(scene)
-    assert scene_dict["buffers"]["positions"]["shape"] == (2, 3)
+    assert scene_dict["buffers"]["positions"]["shape"] == [2, 3]
 
 
-def test_widget_payload_encoding():
-    arrays = {"positions": np.zeros((2, 3), dtype=np.float32)}
-    scene = build_surface_scene(arrays["positions"], (2, 1))
-    widget = build_widget(scene, arrays, height=360)
-    assert widget.height == "360"
-    assert "positions" in widget.buffers
+def test_attach_animation():
+    positions = np.zeros((2, 3), dtype=np.float32)
+    scene = build_surface_scene(positions, (1, 2))
+    frame = Frame(t=0.0, arrays={"positions": positions})
+    anim = Animation(frames=[frame], fps=24)
+    updated = attach_animation(scene, anim)
+    assert updated.animation["fps"] == 24
+    assert updated.animation["frame_count"] == 1

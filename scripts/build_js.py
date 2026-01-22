@@ -10,7 +10,6 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 JS_DIR = ROOT / "js"
 DIST_DIR = JS_DIR / "dist"
-STATIC_DIR = ROOT / "src" / "geometrix" / "static"
 
 
 def run_build() -> None:
@@ -23,16 +22,13 @@ def _ensure_index_js() -> None:
     iife_path = DIST_DIR / "index.iife.js"
     index_path = DIST_DIR / "index.js"
     if iife_path.exists():
-        shutil.copy2(iife_path, index_path)
+        index_path.write_text(iife_path.read_text(encoding="utf-8"), encoding="utf-8")
 
 
-def copy_assets() -> None:
-    if STATIC_DIR.exists():
-        shutil.rmtree(STATIC_DIR)
-    STATIC_DIR.mkdir(parents=True, exist_ok=True)
-    if not DIST_DIR.exists():
-        raise FileNotFoundError("js/dist not found; run build first")
-    shutil.copytree(DIST_DIR, STATIC_DIR, dirs_exist_ok=True)
+def _clear_legacy_assets() -> None:
+    static_dir = ROOT / "src" / "geometrix" / "static"
+    if static_dir.exists():
+        shutil.rmtree(static_dir)
 
 
 def main() -> None:
@@ -46,7 +42,7 @@ def main() -> None:
 
     if not args.skip_build:
         run_build()
-    copy_assets()
+    _clear_legacy_assets()
 
 
 if __name__ == "__main__":

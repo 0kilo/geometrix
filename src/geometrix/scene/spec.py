@@ -30,3 +30,7 @@ class SceneSpec:
     lights: list[dict[str, Any]] = field(default_factory=list)
     axes: dict[str, Any] = field(default_factory=dict)
     grid: dict[str, Any] = field(default_factory=dict)
+    controls: dict[str, Any] = field(default_factory=dict)
+    legend: dict[str, Any] = field(default_factory=dict)
+    gizmo: dict[str, Any] = field(default_factory=dict)
+    animation: dict[str, Any] = field(default_factory=dict)

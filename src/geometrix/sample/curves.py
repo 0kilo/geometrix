@@ -20,6 +20,7 @@ def sample_curve(
     domain: Domain,
     count: int,
 ) -> CurveSamples:
+    """Sample a parametric curve over a 1D domain."""
     t_vals = domain.linspace(count)
     x_vals, y_vals, z_vals = func(t_vals)
     x_vals = _broadcast_to(x_vals, t_vals.shape)

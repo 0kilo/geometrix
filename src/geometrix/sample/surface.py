@@ -21,6 +21,7 @@ def sample_surface_grid(
     domains: list[Domain],
     counts: list[int],
 ) -> SurfaceGrid:
+    """Sample a parametric surface on a grid."""
     if len(domains) != 2 or len(counts) != 2:
         raise ValueError("surface sampling expects two domains and counts")
     u_grid, v_grid = meshgrid(domains, counts)

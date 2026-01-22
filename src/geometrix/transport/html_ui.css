@@ -1,0 +1,113 @@
+#geometrix-container {
+  position: relative;
+  background: radial-gradient(circle at top, #172033, #0b0f1a 60%);
+  overflow: hidden;
+}
+
+.geometrix-panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(12, 16, 28, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  color: #e3e8f0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-size: 12px;
+  min-width: 180px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.geometrix-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.geometrix-panel-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: inherit;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1;
+  padding: 4px 6px;
+}
+
+.geometrix-panel--collapsed {
+  padding-bottom: 8px;
+}
+
+.geometrix-panel h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9fb3ff;
+}
+
+.geometrix-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.geometrix-panel input[type="range"] {
+  width: 100%;
+}
+
+.geometrix-legend {
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 6px;
+  color: #a7b0c0;
+}
+
+.geometrix-legend-item {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+#geometrix-container.geometrix-light {
+  background: #ffffff;
+}
+
+#geometrix-container.geometrix-light .geometrix-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1c1f2b;
+}
+
+#geometrix-container.geometrix-light .geometrix-panel h4 {
+  color: #2a2f45;
+}
+
+#geometrix-container.geometrix-light .geometrix-panel-toggle {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.geometrix-axis-widget {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+}
+
+.geometrix-gizmo {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+}

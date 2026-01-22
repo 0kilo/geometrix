@@ -17,6 +17,7 @@ def sample_points(
     func: Callable[..., tuple[np.ndarray, np.ndarray, np.ndarray]],
     coords: list[np.ndarray],
 ) -> PointSamples:
+    """Sample a point cloud from coordinate arrays."""
     x_vals, y_vals, z_vals = func(*coords)
     base_shape = np.asarray(coords[0]).shape
     x_vals = _broadcast_to(x_vals, base_shape)
