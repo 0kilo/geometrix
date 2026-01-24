@@ -48,7 +48,7 @@ sample it numerically, and render with an interactive Three.js viewer.
 
 ## Install
 ```bash
-pip install -e .
+pip install geometrix
 ```
 
 ## Quickstart (Notebook)
