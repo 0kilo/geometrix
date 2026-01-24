@@ -4,6 +4,9 @@ LLM-assisted LaTeX-first differential geometry renderer for Jupyter/Colab. Ask f
 symbolic solutions (with full derivations), then graph them immediately.
 
 ## Flagship: LLM → Graph
+![LLM assist example (examples/14_llm_assist2.py)](assets/llm_assist2.png)
+_From `examples/14_llm_assist2.py`._
+
 ```python
 import sympy as sp
 from google.colab import userdata
