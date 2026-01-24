@@ -8,7 +8,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PYPROJECT = ROOT / "pyproject.toml"
-PACKAGE_JSON = ROOT / "js" / "package.json"
 
 
 def update_pyproject(version: str) -> None:
@@ -30,10 +29,6 @@ def update_pyproject(version: str) -> None:
     PYPROJECT.write_text("\n".join(out) + "\n", encoding="utf-8")
 
 
-def update_package_json(version: str) -> None:
-    data = json.loads(PACKAGE_JSON.read_text(encoding="utf-8"))
-    data["version"] = version
-    PACKAGE_JSON.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
 
 
@@ -43,7 +38,6 @@ def main() -> None:
     args = parser.parse_args()
 
     update_pyproject(args.version)
-    update_package_json(args.version)
     print(f"Set version to {args.version}")
 
 
