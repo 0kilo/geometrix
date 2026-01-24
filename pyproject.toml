@@ -8,9 +8,9 @@ version = "0.1.10"
 description = "LaTeX-first differential geometry renderer for Jupyter/Colab."
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "Geometrix Contributors" }]
+authors = [{ name = "Khan Tran", email="khanster408@gmail.com" }]
 license = { text = "MIT" }
-keywords = ["geometry", "jupyter", "three.js", "webgpu"]
+keywords = ["geometry", "jupyter", "three.js", "webgpu", "3d graph", "llm", "math"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
@@ -22,14 +22,14 @@ dependencies = [
   "ipywidgets>=8.1",
   "traitlets>=5.9",
   "pydantic>=2.6",
+  "litellm>=1.40",
+  "numba>=0.59",
+  "numexpr>=2.8",
+  "scikit-image>=0.22",
+  "einsteinpy>=0.4",
 ]
 
 [project.optional-dependencies]
-latex-sympy = ["antlr4-python3-runtime==4.11.*"]
-latex2sympy = ["latex2sympy2>=1.9"]
-fast = ["numba>=0.59", "numexpr>=2.8"]
-implicit = ["scikit-image>=0.22"]
-tensors = ["einsteinpy>=0.4"]
 
 [tool.hatch.build]
 packages = ["src/geometrix"]
@@ -58,3 +58,6 @@ warn_return_any = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://github.com/0kilo/geometrix.git"

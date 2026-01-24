@@ -27,3 +27,13 @@ def meshgrid(domains: list[Domain], counts: list[int]) -> list[np.ndarray]:
     ]
     grids = np.meshgrid(*axes, indexing="ij")
     return [np.asarray(grid) for grid in grids]
+
+
+def validate_domains(domains: list[Domain]) -> None:
+    """Validate domain ordering and numeric bounds."""
+
+    for domain in domains:
+        if not np.isfinite(domain.start) or not np.isfinite(domain.stop):
+            raise ValueError(f"Domain {domain.name} bounds must be finite")
+        if domain.start >= domain.stop:
+            raise ValueError(f"Domain {domain.name} start must be < stop")

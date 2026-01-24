@@ -54,27 +54,20 @@ def test_parse_latex_rejects_unknown_command():
         parse_latex_expr(r"\\badcmd(x)", allowed_symbols=["x"])
 
 
+def test_parse_latex_rejects_invalid_chars():
+    with pytest.raises(LatexParseError):
+        parse_latex_expr(r"x; y", allowed_symbols=["x", "y"])
+
+
 def test_parse_latex_accepts_known_command():
     sympy = pytest.importorskip("sympy")
-    pytest.importorskip("antlr4")
-    try:
-        expr = parse_latex_expr(r"\sin(x)", allowed_symbols=["x"])
-    except LatexParseError as exc:
-        if "antlr4" in str(exc):
-            pytest.skip("antlr4 runtime not available")
-        raise
+    expr = parse_latex_expr(r"\sin(x)", allowed_symbols=["x"])
     assert str(expr) == str(sympy.sin(sympy.Symbol("x")))
 
 
 def test_parse_latex_allows_index_symbols():
     sympy = pytest.importorskip("sympy")
-    pytest.importorskip("antlr4")
-    try:
-        expr = parse_latex_expr("i", allowed_symbols=[])
-    except LatexParseError as exc:
-        if "antlr4" in str(exc):
-            pytest.skip("antlr4 runtime not available")
-        raise
+    expr = parse_latex_expr("i", allowed_symbols=[])
     assert str(expr) == str(sympy.Symbol("i"))
 
 
